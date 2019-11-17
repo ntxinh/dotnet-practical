@@ -1,4 +1,5 @@
 using AspNetCoreJWTAuth.Auth;
+using AspNetCoreJWTAuth.Authorization;
 using AspNetCoreJWTAuth.Data;
 using AspNetCoreJWTAuth.Helpers;
 using AspNetCoreJWTAuth.Models;
@@ -6,6 +7,7 @@ using AspNetCoreJWTAuth.Models.Entities;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -44,6 +46,9 @@ namespace AspNetCoreJWTAuth
                     b => b.MigrationsAssembly("AngularASPNETCore2WebApiAuth")));
 
             services.AddSingleton<IJwtFactory, JwtFactory>();
+
+            // ASP.NET Authorization Polices
+            services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
             services.TryAddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -90,7 +95,8 @@ namespace AspNetCoreJWTAuth
             // api user claim policy
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("ApiUser", policy => policy.RequireClaim(Constants.Strings.JwtClaimIdentifiers.Rol, Constants.Strings.JwtClaims.ApiAccess));
+                //options.AddPolicy("ApiUser", policy => policy.RequireClaim(Constants.Strings.JwtClaimIdentifiers.Rol, Constants.Strings.JwtClaims.ApiAccess));
+                options.AddPolicy("ApiUser", policy => policy.Requirements.Add(new ClaimRequirement(Constants.Strings.JwtClaimIdentifiers.Rol, Constants.Strings.JwtClaims.ApiAccess)));
             });
 
             // add identity

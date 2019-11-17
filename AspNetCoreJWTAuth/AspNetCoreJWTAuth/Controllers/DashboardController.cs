@@ -1,8 +1,6 @@
 ﻿using AspNetCoreJWTAuth.Data;
-using AspNetCoreJWTAuth.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -18,7 +16,7 @@ namespace AspNetCoreJWTAuth.Controllers
         private readonly ClaimsPrincipal _caller;
         private readonly ApplicationDbContext _appDbContext;
 
-        public DashboardController(UserManager<AppUser> userManager, ApplicationDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
+        public DashboardController(ApplicationDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
         {
             _caller = httpContextAccessor.HttpContext.User;
             _appDbContext = appDbContext;
