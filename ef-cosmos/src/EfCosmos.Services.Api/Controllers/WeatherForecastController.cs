@@ -11,10 +11,15 @@ namespace EfCosmos.Services.Api.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly CosmosContext _cosmosContext;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(
+            ILogger<WeatherForecastController> logger,
+            CosmosContext cosmosContext
+        )
         {
             _logger = logger;
+            _cosmosContext = cosmosContext;
         }
 
         [HttpGet]
@@ -22,26 +27,20 @@ namespace EfCosmos.Services.Api.Controllers
         {
             try
             {
-                using (var context = new CosmosContext())
+                //context.Database.EnsureDeleted();
+                _cosmosContext.Database.EnsureCreated();
+
+                var newId = new Guid();
+                _cosmosContext.Templates.Add(new Template
                 {
-                    //context.Database.EnsureDeleted();
-                    context.Database.EnsureCreated();
+                    //Id = newId,
+                    PartitionKey = newId.ToString(),
+                    Name = $"Template {newId}",
+                });
 
-                    var newId = new Guid();
-                    context.Templates.Add(new Template
-                    {
-                        Id = newId,
-                        PartitionKey = newId.ToString(),
-                        Name = "Template 1",
-                    });
+                _cosmosContext.SaveChanges();
 
-                    context.SaveChanges();
-                }
-
-                using (var context = new CosmosContext())
-                {
-                    var template = context.Templates.FirstOrDefault();
-                }
+                var template = _cosmosContext.Templates.FirstOrDefault();
 
                 return true;
             }

@@ -6,11 +6,9 @@ namespace EfCosmos.Services.Api.Entities
     {
         public DbSet<Template> Templates { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseCosmos(
-                    "https://YOUR_SERVICE.documents.azure.com:443/",
-                    "YOUR_PRIMARY_KEY",
-                    databaseName: "YOUR_DATABASE");
+        public CosmosContext(DbContextOptions<CosmosContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
