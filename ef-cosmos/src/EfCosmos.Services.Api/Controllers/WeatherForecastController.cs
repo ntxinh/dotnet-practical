@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using EfCosmos.Services.Api.Entities;
 
 namespace EfCosmos.Services.Api.Controllers
 {
@@ -11,11 +10,6 @@ namespace EfCosmos.Services.Api.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
@@ -24,16 +18,37 @@ namespace EfCosmos.Services.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public bool Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            try
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                using (var context = new CosmosContext())
+                {
+                    //context.Database.EnsureDeleted();
+                    context.Database.EnsureCreated();
+
+                    var newId = new Guid();
+                    context.Templates.Add(new Template
+                    {
+                        Id = newId,
+                        PartitionKey = newId.ToString(),
+                        Name = "Template 1",
+                    });
+
+                    context.SaveChanges();
+                }
+
+                using (var context = new CosmosContext())
+                {
+                    var template = context.Templates.FirstOrDefault();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
