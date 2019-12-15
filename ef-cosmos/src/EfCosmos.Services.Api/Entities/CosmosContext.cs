@@ -21,7 +21,14 @@ namespace EfCosmos.Services.Api.Entities
                 .HasNoDiscriminator();
 
             modelBuilder.Entity<Template>()
-                .HasPartitionKey(o => o.PartitionKey);
+                .Property(x => x.Id)
+                .ToJsonProperty("id");
+
+            // modelBuilder.Entity<Template>()
+            //     .HasPartitionKey(o => o.PartitionKey);
+
+            //modelBuilder.Entity<Template>()
+            //    .HasKey(x => x.Id);
         }
     }
 }

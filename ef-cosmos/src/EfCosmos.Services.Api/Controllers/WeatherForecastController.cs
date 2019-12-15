@@ -27,20 +27,34 @@ namespace EfCosmos.Services.Api.Controllers
         {
             try
             {
-                //context.Database.EnsureDeleted();
-                _cosmosContext.Database.EnsureCreated();
+                // _cosmosContext.Database.EnsureDeleted();
+                // _cosmosContext.Database.EnsureCreated();
 
-                var newId = new Guid();
-                _cosmosContext.Templates.Add(new Template
-                {
-                    //Id = newId,
-                    PartitionKey = newId.ToString(),
-                    Name = $"Template {newId}",
-                });
+                // Find By Id
+                var template = _cosmosContext.Templates
+                    .Where(x => x.Id == new Guid("54347566-3afd-44d4-9b97-f7066494c4f1"))
+                    .FirstOrDefault();
 
+                // Find All
+                var templates = _cosmosContext.Templates.ToList();
+
+                // Add
+                var templateNew = new Template();
+                template.Name = "Template 1";
+                _cosmosContext.Templates.Add(template);
                 _cosmosContext.SaveChanges();
 
-                var template = _cosmosContext.Templates.FirstOrDefault();
+                // Update
+                _cosmosContext.Templates.Update(template);
+                _cosmosContext.SaveChanges();
+
+                // Remove
+                _cosmosContext.Templates.Remove(template);
+                _cosmosContext.SaveChanges();
+
+                // AddRange
+                // UpdateRange
+                // RemoveRage
 
                 return true;
             }
