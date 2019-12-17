@@ -12,7 +12,7 @@ namespace EfCosmos.Services.Api.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

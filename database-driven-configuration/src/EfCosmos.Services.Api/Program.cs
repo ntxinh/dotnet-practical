@@ -12,9 +12,10 @@ namespace EfCosmos.Services.Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostingContext, config) => {
-                    config.Add(new ConfigEntityConfigurationSource 
-                    { 
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.Add(new ConfigEntityConfigurationSource
+                    {
                         ReloadOnChange = true
                     });
                 })
