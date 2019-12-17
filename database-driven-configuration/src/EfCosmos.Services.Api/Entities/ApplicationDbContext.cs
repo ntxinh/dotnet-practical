@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EfCosmos.Services.Api.Entities
 {
-    public class CosmosContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Template> Templates { get; set; }
         public DbSet<Config> Configs { get; set; }

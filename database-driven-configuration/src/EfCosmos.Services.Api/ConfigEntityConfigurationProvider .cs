@@ -18,7 +18,7 @@ namespace EfCosmos.Services.Api
 
         public override void Load()
         {
-            using (var db = new CosmosContext())
+            using (var db = new ApplicationDbContext())
             {
                 db.Database.EnsureCreated();
                 Data = db.Configs.ToDictionary(c => c.Id.ToString(), c => c.Name);

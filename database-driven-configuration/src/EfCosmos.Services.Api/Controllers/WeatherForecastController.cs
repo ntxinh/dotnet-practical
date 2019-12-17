@@ -46,7 +46,7 @@ namespace EfCosmos.Services.Api.Controllers
         {
             try
             {
-                using (var _cosmosContext = new CosmosContext())
+                using (var _cosmosContext = new ApplicationDbContext())
                 {
                     _cosmosContext.Database.EnsureCreated();
                     var c = new Config();
@@ -68,7 +68,7 @@ namespace EfCosmos.Services.Api.Controllers
         {
             try
             {
-                using (var _cosmosContext = new CosmosContext())
+                using (var _cosmosContext = new ApplicationDbContext())
                 {
                     _cosmosContext.Database.EnsureCreated();
                     var c = new Template();
