@@ -1,4 +1,5 @@
-﻿using EfCosmos.Services.Api.Entities;
+﻿using EfCosmos.Services.Api.Controllers.Responses;
+using EfCosmos.Services.Api.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -28,7 +29,8 @@ namespace EfCosmos.Services.Api.Controllers
         {
             try
             {
-                return _configuration.AsEnumerable();
+                var data = _configuration.AsEnumerable();
+                return new ApiResponseBuilder().Data(data).BuildOk();
                 // _cosmosContext.Database.EnsureDeleted();
                 //_cosmosContext.Database.EnsureCreated();
                 //return _cosmosContext.Templates.ToList();
@@ -53,7 +55,7 @@ namespace EfCosmos.Services.Api.Controllers
                     _cosmosContext.SaveChanges();
                 }
 
-                return true;
+                return new ApiResponseBuilder().BuildOk();
             }
             catch (Exception ex)
             {
@@ -75,7 +77,7 @@ namespace EfCosmos.Services.Api.Controllers
                     _cosmosContext.SaveChanges();
                 }
 
-                return true;
+                return new ApiResponseBuilder().BuildOk();
             }
             catch (Exception ex)
             {
