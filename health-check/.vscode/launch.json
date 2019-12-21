@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/EfCosmos.Services.Api/bin/Debug/netcoreapp3.1/EfCosmos.Services.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5000/"
+            },
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}",
+        }
+    ]
+}
