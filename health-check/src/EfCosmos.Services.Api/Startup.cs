@@ -3,6 +3,8 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +27,18 @@ namespace EfCosmos.Services.Api
             var connectionString = Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(connectionString));
             services.AddControllers();
+
+            services.AddApiVersioning(o => {
+                o.ReportApiVersions = true;
+                o.AssumeDefaultVersionWhenUnspecified = true;
+                o.DefaultApiVersion = new ApiVersion(1, 0);
+                o.ApiVersionReader = ApiVersionReader.Combine(
+                    new QueryStringApiVersionReader(),
+                    new HeaderApiVersionReader()
+                    {
+                        HeaderNames = { "api-version" }
+                    });
+            });
 
             // Health check
             services.AddHealthChecks()
