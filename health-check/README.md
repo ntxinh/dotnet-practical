@@ -62,3 +62,6 @@ version 15.0 or later. More information can be found at MSBuild doc site
 - https://github.com/tpodolak/Blog/tree/master/SolutionWideProjectPropertiesWithDirectoryBuildProps
 - https://thomaslevesque.com/2017/09/18/common-msbuild-properties-and-items-with-directory-build-props/
 - https://tpodolak.com/blog/2018/04/03/solution-wide-project-properties-directory-build-props/
+- https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2019
+- https://github.com/DotNetAnalyzers/StyleCopAnalyzers
+- https://docs.microsoft.com/en-us/visualstudio/code-quality/install-fxcop-analyzers?view=vs-2019
