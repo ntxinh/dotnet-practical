@@ -2,6 +2,8 @@
 - Health check
 - dotnet watch
 - StyleCop
+- API Versioning
+- API Versioning with Swagger
 
 ```
 dotnet run --project src/EfCosmos.Services.Api/EfCosmos.Services.Api.csproj --launch-profile CLI_DEV
@@ -65,3 +67,6 @@ version 15.0 or later. More information can be found at MSBuild doc site
 - https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2019
 - https://github.com/DotNetAnalyzers/StyleCopAnalyzers
 - https://docs.microsoft.com/en-us/visualstudio/code-quality/install-fxcop-analyzers?view=vs-2019
+- API Versioning
+- https://github.com/microsoft/aspnet-api-versioning/tree/master/samples/aspnetcore/SwaggerSample
+
