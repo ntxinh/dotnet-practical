@@ -1,11 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CCB0B908-303B-4A20-B432-FA85C634E404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCosmos.Services.Api", "src\EfCosmos.Services.Api\EfCosmos.Services.Api.csproj", "{B445AA38-080E-4B9E-B22C-76088717E492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfCosmos.Services.Api", "src\EfCosmos.Services.Api\EfCosmos.Services.Api.csproj", "{B445AA38-080E-4B9E-B22C-76088717E492}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D7926FB-FC07-43C5-B994-583F2F363036}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		CodeStyles.ruleset = CodeStyles.ruleset
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		stylecop.json = stylecop.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +24,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B445AA38-080E-4B9E-B22C-76088717E492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,7 +39,13 @@ Global
 		{B445AA38-080E-4B9E-B22C-76088717E492}.Release|x86.ActiveCfg = Release|Any CPU
 		{B445AA38-080E-4B9E-B22C-76088717E492}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B445AA38-080E-4B9E-B22C-76088717E492} = {CCB0B908-303B-4A20-B432-FA85C634E404}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBD31B1C-45C9-4999-B999-0B706AF85046}
 	EndGlobalSection
 EndGlobal
