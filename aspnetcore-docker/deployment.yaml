@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-aspnetcore-deployment
+spec:
+  selector:
+    matchLabels:
+      app: hello-aspnetcore-pod
+  template:
+    metadata:
+      labels:
+        app: hello-aspnetcore-pod
+    spec:
+      containers:
+      - name: aspnetcore-docker-container
+        image: aspnetcore-docker:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
