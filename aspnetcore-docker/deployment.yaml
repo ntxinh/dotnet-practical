@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: aspnetcore-docker-container
-        image: aspnetcore-docker:latest
+        image: aspnetcore-docker-container:latest
         imagePullPolicy: IfNotPresent
         resources:
           limits:
