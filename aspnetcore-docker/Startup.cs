@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +43,14 @@ namespace aspnetcore_docker
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.Run(async (context) =>
+            {
+                var message = $"Host: {Environment.MachineName}\n" +
+                    $"EnvironmentName: {env.EnvironmentName}\n" +
+                    $"Secret value: {Configuration["Database:ConnectionString"]}";
+                await context.Response.WriteAsync(message);
             });
         }
     }

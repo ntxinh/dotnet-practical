@@ -17,6 +17,12 @@ kubectl apply -f service.yaml
 
 - http://localhost:8080/WeatherForecast
 
+```bash
+# Clean
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
+```
+
 # Kubernetes Dashboard
 
 ```bash

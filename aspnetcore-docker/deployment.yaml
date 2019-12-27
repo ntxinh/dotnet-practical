@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: aspnetcore-docker-container
-        image: aspnetcore-docker-container:latest
+        image: aspnetcore-docker-image:latest
         imagePullPolicy: IfNotPresent
         resources:
           limits:
@@ -21,3 +21,6 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
