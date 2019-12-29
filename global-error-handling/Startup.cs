@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,11 +37,32 @@ namespace global_error_handling
             if (env.IsDevelopment())
             {
                 // app.UseDeveloperExceptionPage();
+                // Approach 1:
                 app.UseExceptionHandler("/error-local-development");
             }
             else
             {
-                app.UseExceptionHandler("/error");
+                // Approach 1:
+                // app.UseExceptionHandler("/error");
+                // Approach 2:
+                // app.UseExceptionHandler(a => a.Run(async context =>
+                // {
+                //     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                //     context.Response.ContentType = "application/json";
+
+                //     var feature = context.Features.Get<IExceptionHandlerPathFeature>();
+                //     var exception = feature.Error;
+
+                //     var result = JsonSerializer.Serialize(new { error = exception.Message });
+                //     // var result = new ErrorDetails()
+                //     // {
+                //     //     StatusCode = context.Response.StatusCode,
+                //     //     Message = "Internal Server Error."
+                //     // }.ToString();
+                //     await context.Response.WriteAsync(result);
+                // }));
+                // Approach 3:
+                app.UseMiddleware<ExceptionMiddleware>();
             }
 
             app.UseRouting();
