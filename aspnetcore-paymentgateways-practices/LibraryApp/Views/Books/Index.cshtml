@@ -1,0 +1,21 @@
+﻿@model IEnumerable<LibraryApp.Data.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 col-xs-6" style="padding-bottom: 35px;">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title <small class="text-muted">(by: @item.Author) </small></h5><br />
+                    <p class="card-text">@item.Description</p>
+                    @Html.ActionLink("Show details", "Details", "Books", new { id = item.Id })
+                    @Html.ActionLink("Purchase - $" +item.Price, "Purchase", "Checkout", new { id = item.Id }, new { @class = "btn btn-success pull-right" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

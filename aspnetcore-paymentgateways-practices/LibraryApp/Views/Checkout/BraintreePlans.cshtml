@@ -1,0 +1,24 @@
+@model List<Braintree.Plan>
+@{
+    ViewData["Title"] = "BraintreePlans";
+}
+
+<div class="row">
+    @foreach (var plan in Model)
+    {
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5>@plan.Name</h5>
+                    <div class="card-text">
+                        <p>Description: @plan.Description</p>
+                        <p>Plan Price: @plan.Price</p>
+                        <p>Trial Period?: @plan.TrialPeriod</p>
+                        <p>Trial Duration?: @plan.TrialDuration (days)</p>
+                    </div>
+                </div>
+            </div>
+            @Html.ActionLink("Subscribe to this plan", "SubscribeToPlan", "Checkout", new { id = plan.Id }, new { @class = "btn btn-success" })
+        </div>
+    }
+</div>

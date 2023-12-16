@@ -1,0 +1,17 @@
+﻿@model LibraryApp.Data.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title <small class="text-muted">(by: @Model.Author</small>)</h5>
+        <p class="card-text">@Model.Description</p>
+    </div>
+    <img class="card-img-bottom" src="@Model.Thumbnail" alt="Card image cap">
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

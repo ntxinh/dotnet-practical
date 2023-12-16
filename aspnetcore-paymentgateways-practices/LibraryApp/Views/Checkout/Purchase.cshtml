@@ -1,0 +1,56 @@
+﻿@model LibraryApp.Data.ViewModels.BookPurchaseVM
+
+@{
+    ViewData["Title"] = "Purchase";
+}
+
+<div class="wrapper">
+    <div class="checkout container">
+        <form id="payment-form" method="post" asp-controller="Checkout" asp-action="Create">
+            @Html.HiddenFor(n => n.Id)
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" name="Title" asp-for="@Model.Title">@Model.Title</h5>
+                    <p class="card-text">@Model.Description</p>
+                    <p class="card-text"><small class="text-muted">Author: @Model.Author</small></p>
+                    <p class="card-text"><small class="text-muted">Price: @Model.Price</small></p>
+                </div>
+                <img style="width: 90%" class="card-img-bottom" src="@Model.Thumbnail" alt="Card image cap">
+            </div>
+            <section>
+                <div class="bt-drop-in-wrapper">
+                    <div id="bt-dropin"></div>
+                </div>
+            </section>
+            @Html.HiddenFor(n => n.Nonce, new { @id = "nonce" })
+            <hr />
+            <button class="btn btn-success" type="submit"><span>Confirm payment - $@Model.Price</span></button>
+        </form>
+    </div>
+</div>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.22.0/js/dropin.min.js"></script>
+<script>
+    var client_token = "@ViewBag.ClientToken";
+    var form = document.querySelector('#payment-form');
+
+    braintree.dropin.create({
+        authorization: client_token,
+        container: '#bt-dropin',
+        paypal: {
+            flow: 'vault'
+        }
+    }, function (createErr, instance) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            instance.requestPaymentMethod(function (err, payload) {
+                if (err) {
+                    return;
+                }
+                document.querySelector('#nonce').value = payload.nonce;
+                form.submit();
+            });
+        });
+    });
+</script>
