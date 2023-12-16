@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{C21AD617-0E30-46AB-9BAA-CF5EF53735F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore-Postgres", "Src\AspNetCore-Postgres\AspNetCore-Postgres.csproj", "{433AC1AC-8CE9-49CB-8C13-777DE7612AAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{433AC1AC-8CE9-49CB-8C13-777DE7612AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433AC1AC-8CE9-49CB-8C13-777DE7612AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433AC1AC-8CE9-49CB-8C13-777DE7612AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433AC1AC-8CE9-49CB-8C13-777DE7612AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{433AC1AC-8CE9-49CB-8C13-777DE7612AAD} = {C21AD617-0E30-46AB-9BAA-CF5EF53735F8}
+	EndGlobalSection
+EndGlobal

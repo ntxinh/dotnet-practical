@@ -1,0 +1,6 @@
+@AspNetCore_Postgres_HostAddress = http://localhost:5074
+
+GET {{AspNetCore_Postgres_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
