@@ -1,0 +1,14 @@
+{
+    "search.exclude": {
+        "**/bin": true,
+        "**/obj": true
+    },
+    "[csharp]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit",
+            "source.sortMembers": "explicit"
+        },
+        "editor.formatOnSave": true
+    },
+}
