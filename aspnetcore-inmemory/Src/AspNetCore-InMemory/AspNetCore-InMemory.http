@@ -1,0 +1,6 @@
+@AspNetCore_InMemory_HostAddress = http://localhost:5052
+
+GET {{AspNetCore_InMemory_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
