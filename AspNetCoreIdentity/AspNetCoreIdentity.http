@@ -1,17 +1,20 @@
 @AspNetCoreIdentity_HostAddress = http://localhost:5000
-@email = ntxinh@sample.com
+@email = nguyentrucxjnh@gmail.com
 
+# securedEndpoint
+# @name weatherforecastCookie
 GET {{AspNetCoreIdentity_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
-# @prompt accessToken
+# securedEndpoint
+# @name weatherforecast
 GET {{AspNetCoreIdentity_HostAddress}}/weatherforecast/
 Accept: application/json
 Authorization: Bearer {{accessToken}}
 
 ###
-
+# @name register
 POST {{AspNetCoreIdentity_HostAddress}}/register/
 Content-Type: application/json
 
@@ -21,7 +24,7 @@ Content-Type: application/json
 }
 
 ###
-
+# @name loginCookie
 POST {{AspNetCoreIdentity_HostAddress}}/login?useCookies=true
 Content-Type: application/json
 
@@ -31,7 +34,7 @@ Content-Type: application/json
 }
 
 ###
-
+# @name login
 POST {{AspNetCoreIdentity_HostAddress}}/login?useCookies=false
 Content-Type: application/json
 
@@ -43,7 +46,11 @@ Content-Type: application/json
 }
 
 ###
-# @prompt refreshToken
+
+@accessToken = {{login.response.body.accessToken}}
+@refreshToken = {{login.response.body.refreshToken}}
+
+# @name refreshToken
 POST {{AspNetCoreIdentity_HostAddress}}/refresh
 Content-Type: application/json
 
@@ -52,7 +59,7 @@ Content-Type: application/json
 }
 
 ###
-
+# @name logout
 POST {{AspNetCoreIdentity_HostAddress}}/logout
 Content-Type: application/json
 
@@ -60,6 +67,7 @@ Content-Type: application/json
 }
 
 ###
+# @name confirmEmail
 # @prompt userId
 # @prompt code
 # @prompt changedEmail
@@ -70,7 +78,7 @@ GET {{AspNetCoreIdentity_HostAddress}}/confirmEmail
 Content-Type: application/json
 
 ###
-
+# @name resendConfirmationEmail
 POST {{AspNetCoreIdentity_HostAddress}}/resendConfirmationEmail
 Content-Type: application/json
 
@@ -79,7 +87,7 @@ Content-Type: application/json
 }
 
 ###
-
+# @name forgotPassword
 POST {{AspNetCoreIdentity_HostAddress}}/forgotPassword
 Content-Type: application/json
 
@@ -88,7 +96,7 @@ Content-Type: application/json
 }
 
 ###
-
+# @name resetPassword
 POST {{AspNetCoreIdentity_HostAddress}}/resetPassword
 Content-Type: application/json
 
@@ -99,7 +107,7 @@ Content-Type: application/json
 }
 
 ###
-
+# @name manage2fa
 POST {{AspNetCoreIdentity_HostAddress}}/manage/2fa
 Content-Type: application/json
 
@@ -112,12 +120,13 @@ Content-Type: application/json
 }
 
 ###
-
+# @name getManageInfo
 GET {{AspNetCoreIdentity_HostAddress}}/manage/info
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 ###
-
+# @name postManageInfo
 POST {{AspNetCoreIdentity_HostAddress}}/manage/info
 Content-Type: application/json
 
