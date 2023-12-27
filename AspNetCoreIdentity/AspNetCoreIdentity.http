@@ -1,0 +1,128 @@
+@AspNetCoreIdentity_HostAddress = http://localhost:5000
+@email = ntxinh@sample.com
+
+GET {{AspNetCoreIdentity_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+# @prompt accessToken
+GET {{AspNetCoreIdentity_HostAddress}}/weatherforecast/
+Accept: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/register/
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "Abc@123"
+}
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/login?useCookies=true
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "Abc@123"
+}
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/login?useCookies=false
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "Abc@123"
+    # "twoFactorCode": "string",
+    # "twoFactorRecoveryCode": "string"
+}
+
+###
+# @prompt refreshToken
+POST {{AspNetCoreIdentity_HostAddress}}/refresh
+Content-Type: application/json
+
+{
+    "refreshToken": "{{refreshToken}}"
+}
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/logout
+Content-Type: application/json
+
+{
+}
+
+###
+# @prompt userId
+# @prompt code
+# @prompt changedEmail
+GET {{AspNetCoreIdentity_HostAddress}}/confirmEmail
+    ?userId={{userId}}
+    &code={{code}}
+    &changedEmail={{changedEmail}}
+Content-Type: application/json
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/resendConfirmationEmail
+Content-Type: application/json
+
+{
+    "email": "{{email}}"
+}
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/forgotPassword
+Content-Type: application/json
+
+{
+    "email": "{{email}}"
+}
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/resetPassword
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "resetCode": "string",
+    "newPassword": "string"
+}
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/manage/2fa
+Content-Type: application/json
+
+{
+    "enable": true,
+    "twoFactorCode": "string",
+    "resetSharedKey": true,
+    "resetRecoveryCodes": true,
+    "forgetMachine": true
+}
+
+###
+
+GET {{AspNetCoreIdentity_HostAddress}}/manage/info
+Content-Type: application/json
+
+###
+
+POST {{AspNetCoreIdentity_HostAddress}}/manage/info
+Content-Type: application/json
+
+{
+    "newEmail": "string",
+    "newPassword": "string",
+    "oldPassword": "string"
+}
