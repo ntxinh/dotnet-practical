@@ -23,6 +23,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.MapIdentityApi<IdentityUser>();
+// app.MapGroup("/identity").MapIdentityApi<IdentityUser>();
 
 if (app.Environment.IsDevelopment())
 {
