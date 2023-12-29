@@ -110,13 +110,17 @@ Content-Type: application/json
 # @name manage2fa
 POST {{AspNetCoreIdentity_HostAddress}}/manage/2fa
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
-    "enable": true,
-    "twoFactorCode": "string",
-    "resetSharedKey": true,
-    "resetRecoveryCodes": true,
-    "forgetMachine": true
+    # First run empty json
+    # Create QR code from share key, Key Uri Format: `otpauth://totp/YOUR_LABEL:YOUR_EMAIL?secret=YOUR_SHARE_KEY&issuer=Example`
+    # Second run 2 first lines
+    # "enable": true,
+    # "twoFactorCode": "string",
+    # "resetSharedKey": true,
+    # "resetRecoveryCodes": true,
+    # "forgetMachine": true
 }
 
 ###
