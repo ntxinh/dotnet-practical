@@ -1,0 +1,6 @@
+@Mailtrap_HostAddress = http://localhost:5086
+
+GET {{Mailtrap_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
