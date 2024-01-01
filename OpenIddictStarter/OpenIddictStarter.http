@@ -1,0 +1,14 @@
+@OpenIddictStarter_HostAddress = http://localhost:5000
+
+GET {{OpenIddictStarter_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{OpenIddictStarter_HostAddress}}/connect/token/
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id=console
+&client_secret=388D45FA-B36B-4988-BA59-B187D329C207
