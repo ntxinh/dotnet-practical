@@ -6,6 +6,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailService, MailService>();
+
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseInMemoryDatabase("AppDb"));
 builder.Services.AddAuthorization();
@@ -52,6 +55,13 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi()
 .RequireAuthorization();
+
+app.MapPost("/SendMail", (MailData mailData, IMailService mailService) =>
+{
+    return mailService.SendMail(mailData);
+})
+.WithName("SendMail")
+.WithOpenApi();
 
 app.MapPost("/logout", async (SignInManager<IdentityUser> signInManager,
     [FromBody]object empty) =>
