@@ -45,6 +45,10 @@ public class Startup
         {
             throw new InvalidOperationException("Could not find certificate with the given thumbprint.");
         }
+
+        // If not using Azure Certificates
+        // Load the .pfx certificate (adjust path and password as needed)
+        // var certificate = new X509Certificate2("path-to-your.pfx", "pfx-password");
         #endregion
 
         services.AddControllersWithViews();
